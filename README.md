@@ -5,7 +5,7 @@
 
   **Securely own, store, manage, and verify your life achievements and decentralized identities on the Polygon Blockchain.**
 
-  [![Live Frontend](https://img.shields.io/badge/Netlify-Live-00C7B7?style=flat-square&logo=netlify)](https://credora-veripass.netlify.app/)
+  [![Live Frontend](https://img.shields.io/badge/Netlify-Live-00C7B7?style=flat-square&logo=netlify)](https://credora-wallet.netlify.app/)
   [![Live Backend](https://img.shields.io/badge/Render-Live-000000?style=flat-square&logo=render)](https://credora-wallet-backend.onrender.com/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg?style=flat-square)](https://opensource.org/licenses/MIT)
   
