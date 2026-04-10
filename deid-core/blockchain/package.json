@@ -1,7 +1,7 @@
 {
-    "name": "deid-blockchain",
+    "name": "zenproof-blockchain",
     "version": "1.0.0",
-    "description": "Smart Contracts for DeID",
+    "description": "Smart Contracts for ZENPROOF",
     "main": "index.js",
     "scripts": {
         "compile": "hardhat compile",

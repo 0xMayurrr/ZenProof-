@@ -11,7 +11,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { Identity } from "@semaphore-protocol/identity";
 
 const Profile = () => {
-  const { user, login } = useAuth();
+  const { user, updateUser } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [githubSyncing, setGithubSyncing] = useState(false);
@@ -59,13 +59,10 @@ const Profile = () => {
     try {
       const token = localStorage.getItem("deid_token");
       if (!token) return;
-
       const res = await api.auth.updateMe(formData, token);
       if (res.success) {
+        updateUser({ name: res.data.name, email: res.data.email });
         toast.success("Profile updated successfully");
-        if (user && token) {
-          login(res.data, token); // Update context
-        }
       }
     } catch (err) {
       toast.error("Failed to save changes");

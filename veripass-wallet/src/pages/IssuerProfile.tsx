@@ -10,7 +10,7 @@ import { api } from "@/lib/api";
 import { toast } from "sonner";
 
 const IssuerProfile = () => {
-  const { user, login } = useAuth();
+  const { user, updateUser } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -56,10 +56,8 @@ const IssuerProfile = () => {
 
       const res = await api.auth.updateMe(formData, token);
       if (res.success) {
+        updateUser({ name: formData.organizationName || user?.name, email: formData.email } as any);
         toast.success("Profile updated successfully");
-        if (user && token) {
-          login(res.data, token); // Update auth context
-        }
       }
     } catch (err) {
       toast.error("Failed to save changes");

@@ -27,7 +27,7 @@ const Index = () => {
             initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           >
             <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-6 border border-emerald-500/20 shadow-sm">
-              <ShieldCheck className="h-4 w-4" /> Universal Credential Wallet
+              <ShieldCheck className="h-4 w-4" /> Decentralized Credential Wallet
             </motion.div>
 
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
@@ -196,7 +196,7 @@ const Index = () => {
       <section className="py-16 bg-card text-foreground border-y border-border">
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center space-y-6 md:flex-row md:space-y-0 md:justify-between max-w-6xl">
           <div className="text-left">
-            <h2 className="font-display text-3xl font-bold mb-2">Credora powered by ZK Blockchain</h2>
+            <h2 className="font-display text-3xl font-bold mb-2">ZENPROOF powered by ZK Blockchain</h2>
             <p className="text-muted-foreground">The most advanced privacy protocol built for Web3 professionals.</p>
           </div>
           <Link to="/signup">
@@ -236,7 +236,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
             <div className="col-span-2">
-              <img src="/credora-high-resolution-logo-transparent.png" alt="Credora" className="h-7 logo-filter mb-6" />
+              <img src="/logo__334-removebg-preview.png" alt="ZENPROOF" className="h-36 logo-filter mb-6" />
               <p className="text-muted-foreground max-w-xs leading-relaxed">Connect your Web3 Developer Identity. Verifiably showcase your achievements without compromising on privacy.</p>
             </div>
             <div>
@@ -263,7 +263,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground text-xs">
-            <p>Copyright © 2026 Credora Networks.</p>
+            <p>Copyright © 2026 ZENPROOF Networks.</p>
             <div className="flex gap-4 mb-4 md:mb-0">
               {/* Social Icons Placeholder */}
               <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition cursor-pointer"><Github className="w-4 h-4" /></div>

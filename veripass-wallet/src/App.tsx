@@ -16,6 +16,8 @@ import Profile from "./pages/Profile";
 import About from "./pages/About";
 import IssueCredential from "./pages/IssueCredential";
 import IssuerProfile from "./pages/IssuerProfile";
+import IssuerDashboard from "./pages/IssuerDashboard";
+import MyAchievements from "./pages/MyAchievements";
 import VerifyDev from "./pages/VerifyDev";
 import NotFound from "./pages/NotFound";
 
@@ -42,6 +44,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/issuer/issue" element={<IssueCredential />} />
             <Route path="/issuer/profile" element={<IssuerProfile />} />
+            <Route path="/issuer/dashboard" element={<IssuerDashboard />} />
+            <Route path="/achievements" element={<MyAchievements />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

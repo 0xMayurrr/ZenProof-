@@ -72,6 +72,19 @@ class BlockchainService {
         }
     }
 
+    async authorizeIssuer(issuerAddress) {
+        try {
+            const isAlready = await this.contract.checkIssuer(issuerAddress);
+            if (isAlready) return { success: true };
+            const tx = await this.contract.authorizeIssuer(issuerAddress);
+            await tx.wait();
+            return { success: true, txHash: tx.hash };
+        } catch (error) {
+            console.error('Blockchain Authorize Issuer Error:', error);
+            throw new Error(`Failed to authorize issuer: ${error.message}`);
+        }
+    }
+
     async checkIssuer(issuerAddress) {
         try {
             return await this.contract.checkIssuer(issuerAddress);

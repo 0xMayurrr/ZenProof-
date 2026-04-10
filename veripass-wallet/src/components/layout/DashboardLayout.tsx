@@ -1,20 +1,21 @@
 import { Link, useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "./Navbar";
-import { LayoutDashboard, Wallet, Share2, Settings, Building2, FilePlus } from "lucide-react";
+import { LayoutDashboard, Wallet, Share2, Settings, Building2, FilePlus, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const userLinks = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/credentials", label: "Credentials", icon: Wallet },
-  { to: "/issuer/issue", label: "Create Credential", icon: FilePlus },
+  { to: "/credentials", label: "My Credentials", icon: Wallet },
+  { to: "/achievements", label: "My Achievements", icon: Trophy },
   { to: "/sharing", label: "Sharing", icon: Share2 },
   { to: "/profile", label: "Settings", icon: Settings },
 ];
 
 const issuerLinks = [
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/issuer/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/issuer/issue", label: "Issue Credential", icon: FilePlus },
+  { to: "/credentials", label: "All Issued", icon: Wallet },
   { to: "/issuer/profile", label: "Organization", icon: Building2 },
   { to: "/profile", label: "Settings", icon: Settings },
 ];

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Upload, Loader2, CheckCircle2 } from "lucide-react";
+import { Upload, Loader2, CheckCircle2, Search, UserCheck, X } from "lucide-react";
 import { api } from "@/lib/api";
 
 const IssueCredential = () => {
@@ -20,12 +20,43 @@ const IssueCredential = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [foundStudent, setFoundStudent] = useState<any>(null);
+  const [searchError, setSearchError] = useState("");
+
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) return;
+    setSearching(true);
+    setSearchError("");
+    setFoundStudent(null);
+    try {
+      const token = localStorage.getItem("deid_token");
+      const res = await api.auth.searchUser(searchQuery.trim(), token!);
+      if (res.success) {
+        setFoundStudent(res.data);
+        setRecipientWallet(res.data.walletAddress);
+      } else {
+        setSearchError("No student found with that DID, wallet, or email.");
+      }
+    } catch {
+      setSearchError("Search failed. Try again.");
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const clearStudent = () => {
+    setFoundStudent(null);
+    setRecipientWallet("");
+    setSearchQuery("");
+    setSearchError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) {
-      toast.error("Please upload a document file");
-      return;
-    }
+    if (!file) { toast.error("Please upload a document file"); return; }
+    if (!recipientWallet) { toast.error("Please search and select a recipient"); return; }
 
     setIsSubmitting(true);
     try {
@@ -42,22 +73,15 @@ const IssueCredential = () => {
 
       const res = await api.credentials.issue(formData, token);
       if (res.success) {
-        toast.success("Credential issued and recorded on-chain!", { icon: <CheckCircle2 className="h-4 w-4 text-success" /> });
+        toast.success("Credential issued and recorded on-chain!");
         navigate("/credentials");
       } else {
         throw new Error(res.error || "Failed to issue credential");
       }
     } catch (error: any) {
-      console.error(error);
       toast.error(error.message || "An error occurred");
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
     }
   };
 
@@ -66,7 +90,42 @@ const IssueCredential = () => {
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
           <h1 className="font-display text-2xl font-bold">Issue New Credential</h1>
-          <p className="text-sm text-muted-foreground mt-1">Create and sign a verifiable credential for a recipient</p>
+          <p className="text-sm text-muted-foreground mt-1">Search for a student and issue a verifiable credential</p>
+        </div>
+
+        {/* Student Search */}
+        <div className="glass-card p-5 space-y-3">
+          <Label className="text-sm font-semibold">Search Student</Label>
+          <p className="text-xs text-muted-foreground">Search by DID, wallet address, or email</p>
+          <div className="flex gap-2">
+            <Input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              placeholder="did:ethr:sepolia:0x... or 0x... or email"
+              className="bg-secondary/50 border-border"
+            />
+            <Button onClick={handleSearch} disabled={searching} variant="outline" className="gap-2 shrink-0">
+              {searching ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+              Search
+            </Button>
+          </div>
+
+          {searchError && <p className="text-xs text-destructive">{searchError}</p>}
+
+          {foundStudent && (
+            <div className="flex items-center justify-between p-3 bg-success/10 border border-success/20 rounded-lg">
+              <div className="flex items-center gap-3">
+                <UserCheck className="h-5 w-5 text-success shrink-0" />
+                <div>
+                  <p className="text-sm font-medium">{foundStudent.name || "Unnamed User"}</p>
+                  <p className="text-xs text-muted-foreground font-mono">{foundStudent.did || foundStudent.walletAddress}</p>
+                  {foundStudent.email && <p className="text-xs text-muted-foreground">{foundStudent.email}</p>}
+                </div>
+              </div>
+              <button onClick={clearStudent}><X className="h-4 w-4 text-muted-foreground hover:text-foreground" /></button>
+            </div>
+          )}
         </div>
 
         <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
@@ -93,11 +152,6 @@ const IssueCredential = () => {
           </div>
 
           <div>
-            <Label className="text-sm">Recipient DID or Wallet</Label>
-            <Input required value={recipientWallet} onChange={(e) => setRecipientWallet(e.target.value)} placeholder="0x..." className="mt-1 bg-secondary/50 border-border" />
-          </div>
-
-          <div>
             <Label className="text-sm">Description</Label>
             <Textarea required value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the credential..." className="mt-1 bg-secondary/50 border-border min-h-[100px]" />
           </div>
@@ -110,32 +164,19 @@ const IssueCredential = () => {
           <div>
             <Label className="text-sm">Upload Document</Label>
             <div className="mt-1 relative border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/30 transition-colors cursor-pointer overflow-hidden">
-              <input type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".pdf,.png,.jpg,.jpeg" />
+              <input type="file" onChange={(e) => e.target.files?.[0] && setFile(e.target.files[0])} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".pdf,.png,.jpg,.jpeg" />
               {file ? (
-                <div>
-                  <CheckCircle2 className="h-8 w-8 text-success mx-auto mb-2" />
-                  <p className="text-sm text-foreground">{file.name}</p>
-                </div>
+                <div><CheckCircle2 className="h-8 w-8 text-success mx-auto mb-2" /><p className="text-sm">{file.name}</p></div>
               ) : (
-                <div>
-                  <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
-                  <p className="text-xs text-muted-foreground mt-1">PDF, PNG, JPG up to 10MB</p>
-                </div>
+                <div><Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" /><p className="text-sm text-muted-foreground">Click to upload or drag and drop</p><p className="text-xs text-muted-foreground mt-1">PDF, PNG, JPG up to 10MB</p></div>
               )}
             </div>
           </div>
 
-          <div className="glass-card p-4 bg-primary/5 border-primary/20">
-            <p className="text-xs text-muted-foreground">
-              <strong className="text-foreground">What happens next:</strong> The document will be uploaded to IPFS,
-              its hash recorded on the blockchain, and the credential sent to the recipient's wallet.
-            </p>
-          </div>
-
-          <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 gap-2">
+          <Button type="submit" disabled={isSubmitting || !foundStudent} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 gap-2">
             {isSubmitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Issuing & Recording on Chain...</> : "Issue Credential"}
           </Button>
+          {!foundStudent && <p className="text-xs text-center text-muted-foreground">Search and select a student above to enable issuing</p>}
         </form>
       </div>
     </DashboardLayout>

@@ -23,6 +23,7 @@ interface AuthContextType {
   loginWithWallet: (role?: string) => Promise<void>;
   signup: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
   logout: () => void;
+  updateUser: (data: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -45,6 +46,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem("deid_user", JSON.stringify(u));
   };
 
+  const updateUser = useCallback((data: Partial<User>) => {
+    setUser(prev => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...data };
+      localStorage.setItem("deid_user", JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
+
   const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     try {
@@ -64,7 +74,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       throw new Error("MetaMask not installed");
     }
     try {
-      // Force MetaMask to prompt account selection even if previously connected
       await (window as any).ethereum.request({
         method: "wallet_requestPermissions",
         params: [{ eth_accounts: {} }],
@@ -81,7 +90,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
 
       const { token, user: userData } = await api.auth.verifyWallet(address, signature);
-
       const u: User = { ...userData, loginMethod: "wallet" as const };
       persistUser(u);
       localStorage.setItem("deid_token", token);
@@ -109,7 +117,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, loginWithWallet, signup, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, loginWithWallet, signup, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,4 @@
-# DeID Universal Certificate Wallet 🪪
+# ZENPROOF Decentralized Credential Wallet 🪪
 
 ## 1. Prerequisites
 - Node.js (v18+)
@@ -44,7 +44,7 @@
    - `PINATA_JWT`: Your Pinata API token for IPFS.
 
 3. Start MongoDB
-   Ensure MongoDB is running locally (`mongodb://localhost:27017/deid`).
+   Ensure MongoDB is running locally (`mongodb://localhost:27017/zenproof`).
 
 4. Run Server:
    ```bash
@@ -66,4 +66,4 @@
 - `GET /verify/:credentialHash` - Verify validity and on-chain status of a credential
 
 ---
-*Developed for DeID - Universal Certificate Wallet Platform*
+*Developed for ZENPROOF - Decentralized Credential Wallet Platform*

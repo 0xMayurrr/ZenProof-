@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="./veripass-wallet/public/credora-high-resolution-logo-transparent.png" alt="Credora Logo" width="200"/>
+  <img src="./veripass-wallet/public/credora-high-resolution-logo-transparent.png" alt="ZENPROOF Logo" width="400"/>
 
-  # Credora / Veripass Wallet
+  # ZENPROOF / Veripass Wallet
 
-  **Securely own, store, manage, and verify your life achievements and decentralized identities on the Polygon Blockchain.**
+  **Decentralized Credential Wallet - Securely own, store, manage, and verify your life achievements and decentralized identities on the Polygon Blockchain.**
 
-  [![Live Frontend](https://img.shields.io/badge/Netlify-Live-00C7B7?style=flat-square&logo=netlify)](https://credora-wallet.netlify.app/)
-  [![Live Backend](https://img.shields.io/badge/Render-Live-000000?style=flat-square&logo=render)](https://credora-wallet-backend.onrender.com/)
+  [![Live Frontend](https://img.shields.io/badge/Netlify-Live-00C7B7?style=flat-square&logo=netlify)](https://zenproof-wallet.netlify.app/)
+  [![Live Backend](https://img.shields.io/badge/Render-Live-000000?style=flat-square&logo=render)](https://zenproof-wallet-backend.onrender.com/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg?style=flat-square)](https://opensource.org/licenses/MIT)
   
 </div>
@@ -14,7 +14,7 @@
 ---
 
 ## ⚡ The Protocol
-Credora is a privacy-first, Universal Credential Wallet. We transform real-world achievements—university degrees, bootcamp certifications, and DAO contributions—into **Verifiable Credentials** bound to a permanent Decentralized Identifier (DID). 
+ZENPROOF is a privacy-first, Universal Credential Wallet. We transform real-world achievements—university degrees, bootcamp certifications, and DAO contributions—into **Verifiable Credentials** bound to a permanent Decentralized Identifier (DID). 
 
 Using **Zero-Knowledge Proofs (ZK-SNARKs)**, users safely prove their reputation across the internet without ever leaking the underlying data. Own your identity, not just your tokens.
 
@@ -56,8 +56,8 @@ This project acts as a Monorepo containing specifically tuned micro-services:
 
 ### 1. Clone the protocol
 ```bash
-git clone https://github.com/0xMayurrr/credora-veripass.git
-cd credora-veripass
+git clone https://github.com/0xMayurrr/zenproof-veripass.git
+cd zenproof-veripass
 ```
 
 ### 2. Setup the Backend

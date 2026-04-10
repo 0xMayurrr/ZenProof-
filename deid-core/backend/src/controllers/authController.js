@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const ethers = require('ethers');
+const { ethers } = require('ethers');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
         const nonce = crypto.randomBytes(16).toString('hex');
         const walletAddress = '0x' + crypto.randomBytes(20).toString('hex'); // mock wallet for email users
 
-        const normalizedRole = role === 'individual' ? 'user' : role;
+        const normalizedRole = role === 'individual' ? 'user' : (role ? role.toLowerCase() : 'user');
 
         user = await User.create({
             email: email.toLowerCase(),
@@ -78,21 +78,28 @@ exports.getNonce = async (req, res, next) => {
         const nonceMessage = `DeID Auth Nonce: ${nonce}`;
 
         if (!user) {
-            const normalizedRole = role === 'individual' ? 'user' : role;
-            // Register new user
+            const normalizedRole = role === 'individual' ? 'user' : (role ? role.toLowerCase() : 'user');
             user = await User.create({
                 walletAddress: formattedAddress,
                 role: normalizedRole || 'user',
                 did: `did:ethr:sepolia:${formattedAddress}`,
                 nonce: nonceMessage
             });
+            if (normalizedRole === 'issuer') {
+                try {
+                    const blockchainService = require('../services/blockchainService');
+                    await blockchainService.authorizeIssuer(formattedAddress);
+                } catch (e) { console.error('Auto-authorize issuer failed:', e.message); }
+            }
         } else {
             user.nonce = nonceMessage;
-            if (!user.did) {
-                user.did = `did:ethr:sepolia:${formattedAddress}`;
-            }
-            if (role && role !== 'individual' && role !== 'user') {
-                user.role = role; // Upgrade role if they signed up as issuer now
+            if (!user.did) user.did = `did:ethr:sepolia:${formattedAddress}`;
+            if (role && role.toLowerCase() === 'issuer' && user.role !== 'issuer') {
+                user.role = 'issuer';
+                try {
+                    const blockchainService = require('../services/blockchainService');
+                    await blockchainService.authorizeIssuer(formattedAddress);
+                } catch (e) { console.error('Auto-authorize issuer failed:', e.message); }
             }
             await user.save();
         }
@@ -168,6 +175,25 @@ exports.getMe = async (req, res, next) => {
     }
 };
 
+// @desc    Search user by wallet or DID
+// @route   GET /auth/search?q=
+// @access  Private
+exports.searchUser = async (req, res, next) => {
+    try {
+        const q = req.query.q?.toLowerCase()?.trim();
+        if (!q) return res.status(400).json({ success: false, error: 'Query required' });
+        const user = await User.findOne({
+            $or: [
+                { walletAddress: q },
+                { did: q },
+                { email: q }
+            ]
+        }).select('name email walletAddress did role organizationName');
+        if (!user) return res.status(404).json({ success: false, error: 'No user found' });
+        res.status(200).json({ success: true, data: user });
+    } catch (error) { next(error); }
+};
+
 // @desc    Update user profile
 // @route   PUT /auth/me
 // @access  Private
@@ -178,7 +204,8 @@ exports.updateMe = async (req, res, next) => {
             email: req.body.email,
             organizationName: req.body.organizationName,
             website: req.body.website,
-            description: req.body.description
+            description: req.body.description,
+            githubUsername: req.body.githubUsername
         };
 
         // Remove undefined fields

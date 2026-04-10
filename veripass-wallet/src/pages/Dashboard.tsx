@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -28,6 +29,7 @@ const StatCard = ({ icon: Icon, label, value, accent }: { icon: any; label: stri
 
 const Dashboard = () => {
   const { user } = useAuth();
+  if (user?.role === "issuer") return <Navigate to="/issuer/dashboard" replace />;
   const [credentials, setCredentials] = useState<any[]>([]);
   const [shares, setShares] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

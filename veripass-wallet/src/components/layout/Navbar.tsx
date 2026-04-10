@@ -40,8 +40,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src="/credora-high-resolution-logo-transparent.png" alt="Credora" className="h-9 logo-filter" />
+        <Link to="/" className="flex items-center gap-3">
+          <img src="/logo_new-removebg-preview.png" alt="ZENPROOF" className="h-14 w-auto" />
+          <span className="text-2xl font-bold tracking-tight text-foreground">ZenProof</span>
         </Link>
 
         {/* Desktop */}

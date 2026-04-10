@@ -31,7 +31,7 @@ exports.issueCredential = async (req, res, next) => {
 
         // Verify role
         if (req.user.role !== 'issuer') {
-            return res.status(403).json({ success: false, error: 'Only unauthorized issuers can issue credentials' });
+            return res.status(403).json({ success: false, error: 'Only authorized issuers can issue credentials' });
         }
 
         // Verify issuer status

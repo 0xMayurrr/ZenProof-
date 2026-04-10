@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['user', 'issuer'],
+        enum: ['user', 'issuer', 'admin'],
         default: 'user'
     },
     organizationName: {
@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema({
     },
     description: {
         type: String
+    },
+    githubUsername: {
+        type: String,
+        trim: true
     },
     nonce: {
         type: String,

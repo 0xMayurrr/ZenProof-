@@ -1,7 +1,7 @@
 {
-    "name": "deid-backend",
+    "name": "zenproof-backend",
     "version": "1.0.0",
-    "description": "DeID Universal Certificate Wallet Backend",
+    "description": "ZENPROOF Decentralized Credential Wallet Backend",
     "main": "src/server.js",
     "scripts": {
         "start": "node src/server.js",

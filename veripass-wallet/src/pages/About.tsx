@@ -8,10 +8,10 @@ const About = () => (
     <div className="container mx-auto px-4 pt-32 pb-16 max-w-4xl">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
-          About <span className="gradient-text">Credora</span>
+          About <span className="gradient-text">ZENPROOF</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Credora is a universal credential wallet that puts ownership of your achievements back in your hands.
+          ZENPROOF is a decentralized credential wallet that puts ownership of your achievements back in your hands.
           No middlemen. No expiration. Blockchain-verified trust.
         </p>
       </motion.div>

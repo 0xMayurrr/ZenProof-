@@ -43,8 +43,9 @@ const Signup = () => {
       </div>
 
       <div className="glass-card w-full max-w-md p-8 relative">
-        <Link to="/" className="flex items-center gap-2 justify-center mb-8">
-          <img src="/credora-high-resolution-logo-transparent.png" alt="Credora" className="h-8 logo-filter" />
+        <Link to="/" className="flex items-center gap-3 justify-center mb-8">
+          <img src="/logo_new-removebg-preview.png" alt="ZENPROOF" className="h-14 w-auto" />
+          <span className="text-2xl font-bold tracking-tight text-foreground">ZenProof</span>
         </Link>
 
         <h1 className="font-display text-2xl font-bold text-center mb-2">Create Your Wallet</h1>

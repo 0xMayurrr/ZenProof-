@@ -58,6 +58,12 @@ export const api = {
       });
       if (!res.ok) throw new Error('Failed to update profile');
       return res.json();
+    },
+    searchUser: async (q: string, token: string) => {
+      const res = await fetch(`${API_URL}/auth/search?q=${encodeURIComponent(q)}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return res.json();
     }
   },
   credentials: {
