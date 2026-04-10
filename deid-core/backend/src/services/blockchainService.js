@@ -13,13 +13,21 @@ const contractABI = [
 
 class BlockchainService {
     constructor() {
-        // Initialize provider based on network in env
         this.provider = new ethers.JsonRpcProvider(process.env.BLOCKCHAIN_RPC_URL);
 
-        // Initialize server wallet 
-        this.wallet = new ethers.Wallet(process.env.SERVER_WALLET_PRIVATE_KEY, this.provider);
+        let privateKey = process.env.SERVER_WALLET_PRIVATE_KEY || '';
+        if (privateKey && !privateKey.startsWith('0x')) {
+            privateKey = '0x' + privateKey;
+        }
 
-        // Initialize contract
+        if (!privateKey || privateKey.length < 66) {
+            console.warn('WARNING: SERVER_WALLET_PRIVATE_KEY is missing or invalid. Blockchain writes will fail.');
+            this.wallet = null;
+            this.contract = null;
+            return;
+        }
+
+        this.wallet = new ethers.Wallet(privateKey, this.provider);
         this.contract = new ethers.Contract(
             process.env.CONTRACT_ADDRESS,
             contractABI,
@@ -27,7 +35,12 @@ class BlockchainService {
         );
     }
 
+    _requireContract() {
+        if (!this.contract) throw new Error('Blockchain service not configured: missing SERVER_WALLET_PRIVATE_KEY');
+    }
+
     async issueCredential(recipient, ipfsCID, credentialHash) {
+        this._requireContract();
         try {
             const tx = await this.contract.issueCredential(recipient, ipfsCID, credentialHash);
             const receipt = await tx.wait();
@@ -42,6 +55,7 @@ class BlockchainService {
     }
 
     async revokeCredential(credentialHash) {
+        this._requireContract();
         try {
             const tx = await this.contract.revokeCredential(credentialHash);
             const receipt = await tx.wait();
@@ -73,6 +87,7 @@ class BlockchainService {
     }
 
     async authorizeIssuer(issuerAddress) {
+        this._requireContract();
         try {
             const isAlready = await this.contract.checkIssuer(issuerAddress);
             if (isAlready) return { success: true };
@@ -95,6 +110,7 @@ class BlockchainService {
     }
 
     async updateRepScore(userAddress, repos, badges, multiplier = 10) {
+        this._requireContract();
         try {
             const tx = await this.contract.updateRepScore(userAddress, repos, badges, multiplier);
             const receipt = await tx.wait();
