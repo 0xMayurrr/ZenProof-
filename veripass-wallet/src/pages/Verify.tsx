@@ -167,7 +167,7 @@ const Verify = () => {
                 <p className="text-sm text-muted-foreground mb-4">Want to own and share your own verifiable credentials?</p>
                 <Link to="/signup">
                   <Button className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90">
-                    Create Your Credora Wallet
+                    Create Your ZenProof Wallet
                   </Button>
                 </Link>
               </div>
