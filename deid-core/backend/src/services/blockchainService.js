@@ -27,6 +27,13 @@ class BlockchainService {
             return;
         }
 
+        if (!process.env.CONTRACT_ADDRESS) {
+            console.warn('WARNING: CONTRACT_ADDRESS is missing. Blockchain writes will fail.');
+            this.wallet = null;
+            this.contract = null;
+            return;
+        }
+
         this.wallet = new ethers.Wallet(privateKey, this.provider);
         this.contract = new ethers.Contract(
             process.env.CONTRACT_ADDRESS,
