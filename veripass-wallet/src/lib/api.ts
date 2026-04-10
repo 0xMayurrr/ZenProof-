@@ -1,4 +1,4 @@
-const DEFAULT_PROD_URL = "https://credora-wallet-backend.onrender.com/api";
+const DEFAULT_PROD_URL = "https://zenproof.onrender.com/api";
 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_URL = import.meta.env.VITE_API_URL || (isLocalhost ? `http://${window.location.hostname}:5000` : DEFAULT_PROD_URL);
 

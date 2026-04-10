@@ -15,9 +15,12 @@ const app = express();
 // Middleware
 app.use(helmet());
 app.use(cors({
-    origin: ['https://credora-wallet.netlify.app', 'https://zenproof-wallet.netlify.app', 'http://localhost:8080', 'http://localhost:5173', process.env.FRONTEND_URL].filter(Boolean),
-    credentials: true
+    origin: ['https://credora-wallet.netlify.app', 'https://zenproof-wallet.netlify.app', 'https://zen-proof-wkvp.vercel.app', 'http://localhost:8080', 'http://localhost:5173', process.env.FRONTEND_URL].filter(Boolean),
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+app.options('*', cors());
 app.use(express.json());
 
 // Routes
