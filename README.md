@@ -8,7 +8,7 @@
 
   **Your Identity. Your Rules. On-chain. Forever.**
 
-  Decentralized Credential Wallet — own, store, manage, and verify your life achievements as cryptographic credentials bound to a permanent Decentralized Identifier on the Polygon Blockchain.
+  Decentralized Credential Wallet — own, store, manage, and verify your life achievements as cryptographic credentials bound to a permanent Decentralized Identifier on the Ethereum Blockchain.
 
   <br/>
 
@@ -45,7 +45,7 @@ The key: using **Zero-Knowledge Proofs (ZK-SNARKs)**, you can prove your credent
 | Feature | Description |
 |---|---|
 | **Web3 Authentication** | Passwordless sign-in via MetaMask wallet signatures — no email, no password, no server custody |
-| **Universal DID Construction** | Auto-generates a `did:polygon:...` identity document per user, fully W3C standards compliant |
+| **Universal DID Construction** | Auto-generates a `did:ethr:sepolia:...` identity document per user, fully W3C standards compliant |
 | **Verifiable Credentials** | Immutable credential issuance with IPFS content hashes anchored to Sepolia smart contracts |
 | **Zero-Knowledge Privacy Layer** | Prove credentials to third parties without revealing the raw data underneath — ZK-SNARKs under the hood |
 | **AI-Powered Fraud Detection** | Machine learning layer that flags anomalous credential submissions before they hit the chain |
@@ -85,7 +85,7 @@ Full-stack monorepo — three precisely tuned layers, each doing exactly what it
 - **Deployed:** Render
 
 ### Blockchain Layer — `/deid-core/contracts`
-- **Network:** Ethereum Sepolia / Polygon Amoy
+- **Network:** Ethereum Sepolia
 - **Language:** Solidity + Hardhat
 - **Decentralized Storage:** IPFS via Pinata
 

@@ -113,7 +113,7 @@ const Index = () => {
         <div className="container mx-auto px-6 lg:px-16 text-center">
           <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold mb-4 sm:mb-6">Powered By Next-Gen Web3 Infrastructure</p>
           <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <div className="flex items-center gap-2 font-display font-bold text-sm sm:text-lg"><Globe className="h-4 w-4 sm:h-5 sm:w-5" /> Polygon</div>
+            <div className="flex items-center gap-2 font-display font-bold text-sm sm:text-lg"><Globe className="h-4 w-4 sm:h-5 sm:w-5" /> Ethereum</div>
             <div className="flex items-center gap-2 font-display font-bold text-sm sm:text-lg"><Lock className="h-4 w-4 sm:h-5 sm:w-5" /> IPFS</div>
             <div className="flex items-center gap-2 font-display font-bold text-sm sm:text-lg"><ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" /> Semaphore ZK</div>
             <div className="flex items-center gap-2 font-display font-bold text-sm sm:text-lg"><Github className="h-4 w-4 sm:h-5 sm:w-5" /> GitHub</div>
@@ -131,7 +131,7 @@ const Index = () => {
               <div className="text-emerald-500 text-sm font-bold tracking-widest uppercase mb-4">Architecture</div>
               <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6 leading-tight">Secure your entire <br />identity on-chain</h2>
               <p className="text-muted-foreground text-lg mb-8 max-w-md">
-                We generate a permanent Decentralized Identifier (DID) for your wallet. Receive official degrees, bootcamp certificates, and job verifications from authorized organizations perfectly hashed on the Polygon blockchain.
+                We generate a permanent Decentralized Identifier (DID) for your wallet. Receive official degrees, bootcamp certificates, and job verifications from authorized organizations perfectly hashed on the Ethereum blockchain.
               </p>
               <ul className="space-y-5 mb-8">
                 {['Immutable Credential Vault via MetaMask', 'Zero-Knowledge Proofs for Total Privacy', 'Hackathon Dev Rep Score included natively', 'One-Click QR Code Sharing'].map((item, i) => (
@@ -225,7 +225,7 @@ const Index = () => {
             <div className="text-center p-8 bg-card rounded-3xl border border-border/50 hover:border-primary/30 transition-all shadow-lg flex flex-col items-center">
               <div className="h-14 w-14 bg-card border border-border rounded-full flex items-center justify-center text-primary mb-6 shadow-inner"><BookOpen className="h-6 w-6" /></div>
               <h3 className="font-bold text-xl mb-3">Academy</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">Learn how ZK Proofs and Polygon smart contracts govern your identity natively on the protocol.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Learn how ZK Proofs and Ethereum smart contracts govern your identity natively on the protocol.</p>
             </div>
           </div>
         </div>
