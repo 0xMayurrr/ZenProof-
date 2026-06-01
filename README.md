@@ -55,7 +55,59 @@ ZenProof is designed to be the foundational infrastructure for a new era of trus
 
 ## 🏗️ Infrastructure Architecture
 
-ZenProof operates as a multi-layered infrastructure protocol, ensuring scalability, privacy, and security:
+ZenProof operates as a multi-layered infrastructure protocol, ensuring scalability, privacy, and security. Below is the high-level system architecture detailing the flow from identity generation to zero-knowledge verification.
+
+```mermaid
+graph TD
+    %% Styling
+    classDef user fill:#00C7B7,stroke:#000,stroke-width:2px,color:#000,font-weight:bold;
+    classDef core fill:#1E293B,stroke:#00C7B7,stroke-width:2px,color:#fff,font-weight:bold;
+    classDef blockchain fill:#3b82f6,stroke:#000,stroke-width:2px,color:#fff,font-weight:bold;
+    classDef storage fill:#8b5cf6,stroke:#000,stroke-width:2px,color:#fff,font-weight:bold;
+    classDef ai fill:#f43f5e,stroke:#000,stroke-width:2px,color:#fff,font-weight:bold;
+    classDef verifier fill:#10b981,stroke:#000,stroke-width:2px,color:#fff,font-weight:bold;
+
+    %% Nodes
+    User(("👤 User Wallet<br/>(DID Controller)")):::user
+    
+    subgraph "ZenProof Protocol Layer"
+        DID["🆔 Universal DID Protocol<br/>(W3C Compliant)"]:::core
+        ZK["🔐 ZK-SNARK Engine<br/>(Selective Disclosure)"]:::core
+        DevRep["💻 Developer Reputation<br/>(GitHub Metrics)"]:::core
+    end
+
+    subgraph "AI Trust Layer"
+        AI["🧠 Fraud Detection Pipeline<br/>(Anomaly Analysis)"]:::ai
+    end
+
+    subgraph "Settlement & Storage Layer"
+        Eth["⛓️ Ethereum Network<br/>(Smart Contracts)"]:::blockchain
+        IPFS["📦 IPFS / Pinata<br/>(Immutable Metadata)"]:::storage
+    end
+
+    subgraph "Verification Layer"
+        Verifier["✅ Third-Party Verifiers<br/>(Recruiters / Apps)"]:::verifier
+    end
+
+    %% Flows
+    User -->|"1. Authenticate"| DID
+    User -->|"2. Connects Activity"| DevRep
+    
+    DevRep -->|"3. Request Credential"| AI
+    DID -->|"Request Credential"| AI
+    
+    AI -->|"4. Scan for Fraud (Pass)"| Eth
+    AI -->|"5. Store Raw Data"| IPFS
+    
+    Eth -.->|"Anchors Data Hash"| IPFS
+    
+    User -->|"6. Generate ZK Proof"| ZK
+    ZK -->|"7. Submit Cryptographic Proof"| Verifier
+    
+    Verifier -->|"8. Verify On-Chain Anchor"| Eth
+```
+
+### Protocol Layers
 
 * **DID Identity Layer:** Generates and resolves universal `did:ethr` identities for every user, fully compliant with W3C standards, acting as the root of trust.
 * **Verifiable Credential Layer:** Anchors immutable, cryptographically signed credentials via IPFS and Ethereum smart contracts.
