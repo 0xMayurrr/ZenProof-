@@ -4,11 +4,9 @@
 
   <br/><br/>
 
-  # ZenProof — Veripass Wallet
+  # ZenProof
 
-  **Your Identity. Your Rules. On-chain. Forever.**
-
-  Decentralized Credential Wallet — own, store, manage, and verify your life achievements as cryptographic credentials bound to a permanent Decentralized Identifier on the Ethereum Blockchain.
+  **Privacy-Preserving Infrastructure for Verifiable Identity and Proof of Skill.**
 
   <br/>
 
@@ -16,154 +14,173 @@
   [![Live Backend](https://img.shields.io/badge/Render-API_Live-000000?style=for-the-badge&logo=render&logoColor=white)](https://zenproof-wallet-backend.onrender.com/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-  <br/>
-
-  > **This was my Final Year Project (FYP)** — built from scratch, shipped to production, deployed live. Real stack. Real contracts. Real credentials. No fluff.
-
-  <br/>
-
 </div>
 
 ---
 
-## What is ZenProof?
+## 🛑 The Problem
 
-You grind through 4 years of college, boot camps, hackathons, open source — and all you have to prove it is a PDF nobody can verify and a LinkedIn anyone can fake.
+The global digital identity paradigm is broken. 
+In the modern professional and educational ecosystem:
 
-**ZenProof kills that problem.**
+- **Resumes are heavily manipulated** and lack cryptographic backing.
+- **Certificates can be easily forged**, requiring expensive manual verification.
+- **Profiles can be faked** at scale, diluting the value of real accomplishments.
+- **Credentials are difficult to verify** across international borders and non-standardized systems.
+- **Users have surrendered control** over their personal data to centralized platforms that monetize their identity.
 
-It's a **privacy-first, Universal Credential Wallet** that transforms your real-world achievements — degrees, certifications, DAO contributions — into cryptographically signed **Verifiable Credentials** bound to a permanent Decentralized Identifier (DID) that lives on-chain.
-
-The key: using **Zero-Knowledge Proofs (ZK-SNARKs)**, you can prove your credentials to anyone on the internet without ever exposing the underlying raw data. Prove you have a CS degree without handing over your transcript. Prove you're a senior dev without revealing your institution. The data stays yours. The proof speaks for itself.
-
-**Own your identity. Not just your tokens.**
-
----
-
-## Core Features
-
-| Feature | Description |
-|---|---|
-| **Web3 Authentication** | Passwordless sign-in via MetaMask wallet signatures — no email, no password, no server custody |
-| **Universal DID Construction** | Auto-generates a `did:ethr:sepolia:...` identity document per user, fully W3C standards compliant |
-| **Verifiable Credentials** | Immutable credential issuance with IPFS content hashes anchored to Sepolia smart contracts |
-| **Zero-Knowledge Privacy Layer** | Prove credentials to third parties without revealing the raw data underneath — ZK-SNARKs under the hood |
-| **AI-Powered Fraud Detection** | Machine learning layer that flags anomalous credential submissions before they hit the chain |
-| **One-Click Shareable Proofs** | Instant verifiable QR codes and share-links for recruiters to cryptographically verify applicants on the spot |
-| **Dev Rep Engine** | GitHub-native module that calculates developer activity statistics and mints them as unique on-chain credentials |
+The world needs a trustless verification system.
 
 ---
 
-## The AI Layer — Why It Matters
+## 💡 The Solution
 
-Credential fraud is real. Fake degrees, forged certificates, manipulated transcripts — they all look legitimate on paper.
+**ZenProof is a decentralized trust layer that enables organizations, developers, institutions, and platforms to issue, verify, and selectively disclose credentials without exposing sensitive user information.**
 
-ZenProof introduces an **AI-powered verification layer** that runs on every credential submission before it gets anchored on-chain. The model is trained on patterns of legitimate vs. fraudulent credential data, flagging anomalies in real time:
-
-- Unusual institution-credential pairings
-- Metadata inconsistencies across multi-credential submissions
-- Reputation scoring based on issuer trust signals
-
-This isn't just blockchain for the sake of blockchain. The combination of **AI fraud detection + ZK privacy + on-chain immutability** creates a full-stack trust layer that neither Web2 nor Web3 alone can pull off.
+By combining Decentralized Identifiers (DIDs), Zero-Knowledge Proofs (ZK-SNARKs), and Artificial Intelligence, ZenProof shifts identity from a centralized silo to an open, user-owned protocol. Users can prove they hold specific qualifications, certifications, or skills, while maintaining absolute sovereignty over the underlying data.
 
 ---
 
-## Tech Stack
+## 🔭 Vision
 
-Full-stack monorepo — three precisely tuned layers, each doing exactly what it's built for.
+ZenProof is designed to be the foundational infrastructure for a new era of trust. We are building the rails for:
 
-### Frontend — `/veripass-wallet`
-- **Framework:** React + Vite (TypeScript)
-- **Styling:** Tailwind CSS + Shadcn UI + Framer Motion
-- **Web3 Engine:** Ethers.js v6
-- **Deployed:** Netlify
-
-### Backend — `/deid-core/backend`
-- **Runtime:** Node.js + Express
-- **Database:** MongoDB Atlas
-- **Identity Protocol:** JWT + Custom DID Resolver
-- **Deployed:** Render
-
-### Blockchain Layer — `/deid-core/contracts`
-- **Network:** Ethereum Sepolia
-- **Language:** Solidity + Hardhat
-- **Decentralized Storage:** IPFS via Pinata
+- **Identity:** Self-sovereign identity anchored immutably on-chain.
+- **Reputation:** Portable reputation that follows users across platforms and ecosystems.
+- **Credentials:** Standardized, verifiable proof of accomplishments.
+- **Proof of Skill:** Cryptographically verified developer and professional capabilities.
+- **AI-Powered Trust Systems:** Intelligent fraud detection operating at the protocol level.
 
 ---
 
-## Quick Start
+## 🏗️ Infrastructure Architecture
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/0xMayurrr/zenproof-veripass.git
-cd zenproof-veripass
-```
+ZenProof operates as a multi-layered infrastructure protocol, ensuring scalability, privacy, and security:
 
-### 2. Run the backend
-```bash
-cd deid-core/backend
-npm install
-```
-Set up your `.env` with your MongoDB URI, Pinata API keys, and private keys. Do not commit these.
-```bash
-npm run dev
-# Starts on http://localhost:5000
-```
-
-### 3. Run the frontend
-```bash
-cd veripass-wallet
-npm install
-```
-Set `VITE_API_URL=http://localhost:5000/api` in your `.env`.
-```bash
-npm run dev
-# Starts on http://localhost:8080
-```
-
-### 4. Connect
-Open `http://localhost:8080/` in a Web3-injected browser (Brave or Chrome with MetaMask). Connect your wallet.
+* **DID Identity Layer:** Generates and resolves universal `did:ethr` identities for every user, fully compliant with W3C standards, acting as the root of trust.
+* **Verifiable Credential Layer:** Anchors immutable, cryptographically signed credentials via IPFS and Ethereum smart contracts.
+* **ZK Proof Layer:** Utilizes advanced Zero-Knowledge circuitry (ZK-SNARKs) to generate verifiable proofs without leaking the underlying credential data.
+* **Selective Disclosure Layer:** Allows users to choose exactly which data points of a credential to reveal to a verifier.
+* **AI Fraud Detection Engine:** An intelligent real-time analysis module that scans credential metadata to identify anomalies and prevent fraudulent issuance.
+* **Developer Reputation Engine:** A system tailored for calculating and minting on-chain reputation based on real-world engineering contributions (e.g., GitHub activity).
+* **Verification Network:** Decentralized verifiers that cryptographic proofs can be submitted to, ensuring trustless authentication for any application.
 
 ---
 
-## Security
+## ⚡ Core Features
 
-All sensitive environment variables — contract deployment keys, MongoDB URIs, API secrets — are excluded from version control via a custom `.gitignore`. Nothing sensitive touches this repo. That's non-negotiable.
+- **Decentralized Identifier (DID) Generation:** Infrastructure-grade identity provisioning without reliance on centralized registries.
+- **Cryptographic Credential Issuance:** Seamlessly issue tamper-proof verifiable credentials that are instantly resolvable on-chain.
+- **Zero-Knowledge Verification:** Enterprise-grade ZK-SNARK integration allowing instantaneous verification of claims while preserving absolute user privacy.
+- **Predictive Fraud Analysis:** Machine learning pipelines that analyze issuance patterns, detecting and mitigating credential fraud proactively.
+- **Passwordless Web3 Authentication:** Secure, frictionless user onboarding via cryptographic wallet signatures, eliminating traditional vulnerability vectors.
+- **Instant Proof Sharing:** Generation of shareable cryptographic proofs via QR codes or deep links for immediate third-party verification.
+- **Interoperable Ecosystem:** Built on open W3C standards, ensuring compatibility across the broader Web3 and decentralized identity landscape.
 
 ---
 
-## What Comes Next — Credora
+## 🛡️ Privacy Layer
 
+### **"Reveal Proofs. Not Personal Data."**
+
+The cornerstone of ZenProof is its uncompromising approach to privacy. Traditional verification requires handing over sensitive documents. ZenProof utilizes ZK-SNARKs to cryptographically prove statements about those documents instead.
+
+For example, users can:
+- **Prove degree completion** without exposing their full academic transcript or GPA.
+- **Prove eligibility** (e.g., age or citizenship) without revealing a passport or ID number.
+- **Prove skill ownership** (e.g., senior developer status) without exposing their specific employment history or salary.
+
+The verifier receives mathematical certainty; the user retains their privacy.
+
+---
+
+## 🧠 AI Trust Engine
+
+**An intelligent trust and anomaly detection system for credential ecosystems.**
+
+While blockchains ensure data immutability, they do not guarantee data truthfulness. ZenProof introduces a pre-chain AI Trust Engine designed to safeguard the integrity of the ecosystem. 
+
+Before a credential is ever anchored on-chain, our models evaluate the issuance context, metadata consistency, and institutional reputation signals to flag potentially fraudulent activity. This creates a robust defense against "garbage-in, garbage-out" scenarios that plague naive blockchain deployments.
+
+---
+
+## 🗺️ Future Roadmap
+
+ZenProof is actively evolving into a comprehensive trust network.
+
+- **Phase 1 — Verifiable Credentials:** Core issuance, storage, and standard Web3 verification (Completed).
+- **Phase 2 — Developer Reputation Network:** Decentralized scoring and credentialing for software engineers based on verifiable contributions.
+- **Phase 3 — Proof of Skill Infrastructure:** Expanding beyond static degrees to dynamic, provable skill assessments.
+- **Phase 4 — AI Trust Layer:** Deepening the fraud detection models and opening API access for third-party verifiers.
+- **Phase 5 — Confidential Credentials with FHE:** Integrating Fully Homomorphic Encryption for computations on encrypted credentials.
+- **Phase 6 — ProofHire Ecosystem:** Launching a flagship application built on ZenProof to revolutionize technical recruiting.
+
+---
+
+## 🔒 FHE Compatibility Roadmap
+
+As the cryptography landscape advances, ZenProof is positioning itself to integrate **Fully Homomorphic Encryption (FHE)**, unlocking unprecedented capabilities for private credential computation. Partnering with technologies like Fhenix, our future architecture will support:
+
+- **Confidential Credentials:** Storing credentials fully encrypted on-chain, inaccessible even to the network nodes.
+- **Private Recruiter Queries:** Enabling organizations to query the network for specific skill sets without seeing the identities of the candidates until consent is granted.
+- **Encrypted Verification:** Verifying credentials over fully encrypted data streams, eliminating data exposure during transit.
+- **Privacy-Preserving Skill Matching:** Algorithmic matching of talent to opportunities where both the requirements and the skills remain encrypted.
+- **Secure Identity Computation:** Performing complex identity aggregations and reputation scoring entirely in cipher-text.
+
+*Note: FHE capabilities represent the next generation of ZenProof's infrastructure and are currently in the research and design phase.*
+
+---
+
+## 🏢 Use Cases
+
+ZenProof provides the trust layer for diverse ecosystems:
+
+- **Universities & Educational Institutions:** Issue tamper-proof digital diplomas that alumni can selectively share.
+- **Recruiters & Talent Acquisition:** Instantly verify candidate qualifications cryptographically, eliminating background check delays and fraud.
+- **Developers & Engineers:** Build an immutable portfolio of verified contributions, certifications, and capabilities.
+- **DAOs & Web3 Communities:** Implement Sybil-resistant governance and role-based access control based on verified reputation.
+- **Hackathons:** Issue verifiable proof of participation, winning status, and specific track accomplishments.
+- **Government & Civic Infrastructure:** Anchor identity documents, licenses, and permits with high-assurance cryptography.
+- **Digital Identity Systems:** Serve as the underlying credential engine for consumer identity wallets.
+
+---
+
+## 🌐 Developer Ecosystem
+
+ZenProof is designed as an open platform. We are building the infrastructure so you can build the future of trust. Future products that can be built on top of the ZenProof protocol include:
+
+- **ProofHire:** A privacy-first recruiting platform connecting verified talent with top tier companies.
+- **Prooffolio:** A decentralized, undeniable portfolio for creatives and developers.
+- **Credora:** National-scale credential management for enterprise and government applications.
+- **Talent Networks:** Decentralized guilds utilizing ZenProof credentials for membership and ranking.
+- **Reputation Systems:** Plug-and-play trust scores for DeFi protocols, lending platforms, and marketplaces.
+
+---
+
+## 🛠️ Tech Stack
+
+ZenProof's architecture is built on a robust, scalable, and modern stack designed for high availability and cryptographic security:
+
+- **Protocol Layer:** Solidity, Hardhat, Ethers.js
+- **Network:** Ethereum (Sepolia Testnet for V1)
+- **Identity & Storage:** Decentralized Identifiers (W3C DIDs), IPFS, Pinata
+- **Cryptography Engine:** ZK-SNARKs, ECDSA Signatures
+- **Backend Infrastructure:** Node.js, Express, MongoDB Atlas, REST APIs
+- **Frontend Applications:** React, Vite, TypeScript, Tailwind CSS, Framer Motion
+- **Deployment & DevOps:** Netlify, Render
+
+---
+
+## 🌍 Why ZenProof Matters
+
+In an increasingly digital world, the ability to prove who you are and what you have accomplished—without giving away your privacy—is a fundamental human right. 
+
+ZenProof is not just a wallet or an application; it is a **foundational infrastructure layer** designed to restore sovereignty to the user and verifiable trust to the internet. We are building the cryptographic rails that will power the next generation of the reputation economy.
+
+**Trust is broken. Let's prove it.**
+
+<br/>
 <div align="center">
-  <img src="./veripass-wallet/public/credora-high-resolution-logo-transparent.png" alt="Credora Logo" width="260"/>
-  <br/><br/>
-</div>
-
-ZenProof was the proof of concept. **[Credora](https://github.com/0xMayurrr/Credora_Digital)** is the production system.
-
-Credora is the upgraded, government-grade successor to ZenProof — rebuilt on **Hyperledger Fabric 2.5** with a dual-layer authentication model: MetaMask for citizens, X.509 MSP certificates for institutions. The AI fraud detection engine is deeper, the ZK privacy architecture is tighter, and the credential lifecycle management is built for national-scale deployment.
-
-It was submitted to the **Blockchain India Challenge 2024 (MeitY)** — a government initiative to modernize India's credential infrastructure.
-
-> ZenProof validated the idea. Credora ships it to the real world.
-
-**Repo:** [github.com/0xMayurrr/Credora_Digital](https://github.com/0xMayurrr/Credora_Digital)
-
----
-
-## Links
-
-- **Live App:** [zenproof-wallet.netlify.app](https://zenproof-wallet.netlify.app/)
-- **Backend API:** [zenproof-wallet-backend.onrender.com](https://zenproof-wallet-backend.onrender.com/)
-- **ZenProof Repo:** [github.com/0xMayurrr/ZenProof-](https://github.com/0xMayurrr/ZenProof-)
-- **Credora Repo:** [github.com/0xMayurrr/Credora_Digital](https://github.com/0xMayurrr/Credora_Digital)
-
----
-
-<div align="center">
-
-  *Final Year Project — built, deployed, and on-chain.*
-
-  **[@0xMayurrr](https://github.com/0xMayurrr)**
-
+  <i>Built for the decentralized future.</i><br/>
+  <b><a href="https://github.com/0xMayurrr">@0xMayurrr</a></b>
 </div>
