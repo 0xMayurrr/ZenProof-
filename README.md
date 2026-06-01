@@ -121,13 +121,14 @@ graph TD
 
 ## ⚡ Core Features
 
-- **Decentralized Identifier (DID) Generation:** Infrastructure-grade identity provisioning without reliance on centralized registries.
-- **Cryptographic Credential Issuance:** Seamlessly issue tamper-proof verifiable credentials that are instantly resolvable on-chain.
-- **Zero-Knowledge Verification:** Enterprise-grade ZK-SNARK integration allowing instantaneous verification of claims while preserving absolute user privacy.
-- **Predictive Fraud Analysis:** Machine learning pipelines that analyze issuance patterns, detecting and mitigating credential fraud proactively.
-- **Passwordless Web3 Authentication:** Secure, frictionless user onboarding via cryptographic wallet signatures, eliminating traditional vulnerability vectors.
-- **Instant Proof Sharing:** Generation of shareable cryptographic proofs via QR codes or deep links for immediate third-party verification.
-- **Interoperable Ecosystem:** Built on open W3C standards, ensuring compatibility across the broader Web3 and decentralized identity landscape.
+| Feature | Description | Protocol Impact |
+| :--- | :--- | :--- |
+| **Decentralized Identifier (DID)** | Infrastructure-grade identity provisioning without centralized registries. | W3C Compliant |
+| **Cryptographic Credentials** | Seamlessly issue tamper-proof verifiable credentials that are instantly resolvable. | On-Chain |
+| **Zero-Knowledge Verification** | Enterprise-grade ZK-SNARK integration allowing instantaneous verification. | Absolute Privacy |
+| **Predictive Fraud Analysis** | Machine learning pipelines that analyze issuance patterns. | Proactive Security |
+| **Passwordless Web3 Auth** | Secure, frictionless user onboarding via cryptographic wallet signatures. | Zero Vulns |
+| **Instant Proof Sharing** | Generation of shareable cryptographic proofs via QR codes or deep links. | Instant Auth |
 
 ---
 
@@ -148,9 +149,10 @@ The verifier receives mathematical certainty; the user retains their privacy.
 
 ## 🧠 AI Trust Engine
 
-**An intelligent trust and anomaly detection system for credential ecosystems.**
-
-While blockchains ensure data immutability, they do not guarantee data truthfulness. ZenProof introduces a pre-chain AI Trust Engine designed to safeguard the integrity of the ecosystem. 
+> [!IMPORTANT]
+> **An intelligent trust and anomaly detection system for credential ecosystems.**
+> 
+> While blockchains ensure data immutability, they do not guarantee data truthfulness. ZenProof introduces a pre-chain AI Trust Engine designed to safeguard the integrity of the ecosystem. 
 
 Before a credential is ever anchored on-chain, our models evaluate the issuance context, metadata consistency, and institutional reputation signals to flag potentially fraudulent activity. This creates a robust defense against "garbage-in, garbage-out" scenarios that plague naive blockchain deployments.
 
@@ -160,12 +162,16 @@ Before a credential is ever anchored on-chain, our models evaluate the issuance 
 
 ZenProof is actively evolving into a comprehensive trust network.
 
-- **Phase 1 — Verifiable Credentials:** Core issuance, storage, and standard Web3 verification (Completed).
-- **Phase 2 — Developer Reputation Network:** Decentralized scoring and credentialing for software engineers based on verifiable contributions.
-- **Phase 3 — Proof of Skill Infrastructure:** Expanding beyond static degrees to dynamic, provable skill assessments.
-- **Phase 4 — AI Trust Layer:** Deepening the fraud detection models and opening API access for third-party verifiers.
-- **Phase 5 — Confidential Credentials with FHE:** Integrating Fully Homomorphic Encryption for computations on encrypted credentials.
-- **Phase 6 — ProofHire Ecosystem:** Launching a flagship application built on ZenProof to revolutionize technical recruiting.
+```mermaid
+timeline
+    title ZenProof Infrastructure Rollout
+    Phase 1 : Verifiable Credentials : Core issuance, storage, Web3 verification
+    Phase 2 : Developer Reputation : Decentralized scoring based on verifiable contributions
+    Phase 3 : Proof of Skill : Dynamic, provable skill assessments
+    Phase 4 : AI Trust Layer : Deep fraud detection models & API access
+    Phase 5 : Confidential FHE : Fully Homomorphic Encryption for encrypted computations
+    Phase 6 : ProofHire Ecosystem : Flagship application for technical recruiting
+```
 
 ---
 
@@ -213,13 +219,22 @@ ZenProof is designed as an open platform. We are building the infrastructure so 
 
 ZenProof's architecture is built on a robust, scalable, and modern stack designed for high availability and cryptographic security:
 
-- **Protocol Layer:** Solidity, Hardhat, Ethers.js
-- **Network:** Ethereum (Sepolia Testnet for V1)
-- **Identity & Storage:** Decentralized Identifiers (W3C DIDs), IPFS, Pinata
-- **Cryptography Engine:** ZK-SNARKs, ECDSA Signatures
-- **Backend Infrastructure:** Node.js, Express, MongoDB Atlas, REST APIs
-- **Frontend Applications:** React, Vite, TypeScript, Tailwind CSS, Framer Motion
-- **Deployment & DevOps:** Netlify, Render
+### Protocol & Cryptography
+![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white)
+![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white)
+![IPFS](https://img.shields.io/badge/IPFS-65C2CB?style=for-the-badge&logo=IPFS&logoColor=white)
+![ZK-SNARKs](https://img.shields.io/badge/ZK--SNARKs-FF9900?style=for-the-badge&logo=zk&logoColor=white)
+
+### Backend Infrastructure
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+### Frontend Applications
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ---
 
